@@ -63,5 +63,89 @@ arr[j+1] = temp;
 --> Selection sort :
    * The selection sort algorithm finds the lowest value in an array and moves it to the front of the array.
    * int min , int temp.
+
+// code:
+```c
+  for(int i=0;i<arr-1;i++){
+       int min=i;
+   for(int j=0;j<arr;j++){
+         if(arr[min]>arr[j]){
+        min = j;
+}
+}
+int temp=arr[i];
+arr[i]=arr[min];
+arr[min]=temp;
+```
+---> Quick sort
+   * Initally the low points to the first index and high points to the last index.
+   * Get the index (where the pivot should be placed after sorting) using a partition() function call it partition index.
+   * Call the function quicksort() for the left and the right subarray respectively ie. quicksort (arr,low,partition index ) and quick sort (arr+partioning+1,high) do this while (low<high).
+   * If pivot<j - No change
+   * If pivot>j - Increment i
+   * Now we swap the values of i and j with the help of temp variable.
+
+// code:
+```c
+partiton (int[] arr, int start, int end){
+  int pivot= array [end];
+  int i = start-1;
+  for(int j=start;j<=end-1;j++){
+      if (arr[j]<pivot){
+          i++;
+  int temp=arr[i];
+  arr[i]=arr[j];
+  arr[j]=temp;
+}
+}
+i++;
+(variable swap)=array[end];
+arr[end]=temp;
+return i;
+}
+```
+--> Merge sort:
+   * Divide the unsorted array into two sub-arrays, half the size of the original.
+   * Continue to divide the sub-arrays as long as the current piece of the array has more than one element.
+   * Merge two sub-arrays together by always putting the lowest value first.
+   * keep merging until there is no sub-arrays left.
+   * Declare left variable too and right variable to n-1.
+   * Find mid by median formula mid=(left+right)/2.
+   * call merge sort on (left,mid).
+   * call merge sort on (mid+1,rear).
+   * continue till left is less than right.
+   * Then call merge function to merge sort.
+
+// code:
+```c
+void merge(int[] leftarr,int[] rightarr,int arr){
+    if(length<=1){
+        return;
+int middle =length/2;
+int leftarr=new int[middle];
+}
+}
+int[] rightarr=new int(length-middle);
+           int i=0; // left
+            int j=0; // right
+for(i=0;i<length;i++){
+      if(i<middle){
+        leftarr[i]=arr[i];
+}
+else{
+left arr[j]=arr[i];
+j++;
+}
+}
+mergesort(leftarray);
+mergesort(rightarray);
+merge(left arr;right arr; arr);
+}
+void merge (int []leftarr,int [] rightarr,arr[]){
+int leftsize= array length/2;
+int rightsize= array length-leftsize;
+int i=0;l=0;r=o; // indices
+```
+
      
      
