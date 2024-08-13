@@ -2,17 +2,45 @@ Data stuctures and algorithms:
 
 --> DSA is about finding effficient ways to store and retrive data, to perform operations on data , and to store 
     specific problems.
+    
+--> Data structure is about how data can be  stored in different structures. Algorithms is about how to solve  different problems, often by searching through and maniplating the data structures. DSA helps use large amount of data to solve problems efficiently.
+
+--> There are two types of data structures :
+
+* Primitive Data Structure : These are the basic Data structures provided by programming languages to represent single values such as integers, floating-point characters and booleans.
+* Abstract Data Structure  : These are higher-level data structures that are built using primitive data structures and provide more complex and specilized operations  some common examples include arrays, linked list, stacks, queues, trees and graphs.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Time complexity :
+* A measure of the amount of time an algorithm takes to run, depending on the amount data the algorithm is working on.
+
+Space complexity :
+* A measure of amount of memory of data the algorithm uses, depending on the amount of data the algorithm is working on.
+
+Big O(n) :
+* A mathamatical notation that discribes the limiting behaviour of a function where the argument tends towards a pirticular value or infinity.
+
+Recursion :
+* A programming technique where a function calls itself.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 Search method :
---> Linear search
-    * The Linear search algorithm searches through an array and returns the index of value it searches for.
-    * It starts from the first element and checks each element one by one until it finds the value
-    * If the value is not found, it returns -1.
 
---> Binary search
-    * THe binary search algorithm searches through an array and returns the index of the value it searches for.
-    * It starts from the middle element and checks if the value is present or not.
-    * If the value is not found, it returns -1.
+--> Linear search :
+
+* The Linear search algorithm searches through an array and returns the index of value it searches for.
+* It starts from the first element and checks each element one by one until it finds the value
+* If the value is not found, it returns -1.
+* Time complexity is O(n).
+
+--> Binary search :
+
+* The binary search algorithm searches through an array and returns the index of the value it searches for.
+* It starts from the middle element and checks if the value is present or not.
+* If the value is not found, it returns -1.
+* Time complexity is O(log2n).
 
 // code :
 ```c
@@ -30,7 +58,7 @@ Search method :
 --> Insertion sort :
    * The insertion sort algorithm uses the array to hold sorted values that are not sorted.
    * If the second element which is stored in temp location and is less than the first element than the elements gets swaped.
-
+   * Time complexity is O(n^2).
 // code:
 ```c
   for(int i=1;i<arr;i++){
@@ -47,6 +75,8 @@ arr[j+1] = temp;
 --> Bubble sort :
    * Bubble sort is an algorithm that sorts an array fromthe lowest to highest value.
    *  [9 ,1 ,8 ,2 ,7 ,3 ,6 ,4 ,5] -- temp = swaps 9 and 1.
+   *  Time complexity is O(n^2).
+   *  For an array of n values there must be n such comparisions and after one loop, the array is looped through again and again n times.
 
 // code:
 ```c
@@ -63,6 +93,7 @@ arr[j+1] = temp;
 --> Selection sort :
    * The selection sort algorithm finds the lowest value in an array and moves it to the front of the array.
    * int min , int temp.
+   * Time complexity is O(n^2).
 
 // code:
 ```c
@@ -84,6 +115,7 @@ arr[min]=temp;
    * If pivot<j - No change
    * If pivot>j - Increment i
    * Now we swap the values of i and j with the help of temp variable.
+   * Time complexity is O(nlogn).
 
 // code:
 ```c
@@ -115,6 +147,7 @@ return i;
    * call merge sort on (mid+1,rear).
    * continue till left is less than right.
    * Then call merge function to merge sort.
+   * Time complexity is O(nlogn).
 
 // code:
 ```c
@@ -146,6 +179,8 @@ int leftsize= array length/2;
 int rightsize= array length-leftsize;
 int i=0;l=0;r=o; // indices
 ```
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-     
+Linked lists :
+
      
