@@ -144,7 +144,7 @@ void display(struct Node* head) {
 
     struct Node* temp = head;
     do {
-        printf("%d\n ", temp->data);
+        printf("%d\n", temp->data);
         temp = temp->next;
     } while (temp != head); // Stop when we reach the head again
     
