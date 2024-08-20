@@ -182,5 +182,49 @@ int i=0;l=0;r=o; // indices
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Linked lists :
+* When we want to work with an unknown number of data values, We use a linked list data structure to organize.
 
-     
+--> Single Linked list :
+* Single Linked list is a sequence of elements in which every element has the link to the next element in the sequence. In any single linkedlist the individual element is called "Node".
+* Every Node consists of two fields data field. The data field is used to store actual address and stores next element address.
+
+  [ 10 | 1004 ] --> [ 25 | 1008 ] --> [ 28 | 1012 ] --> [ 55 | NULL ]
+
+          ^ Node address 
+
+// code :
+```c
+struct node // each node in list contain data and next pointer
+{
+int data;
+struct node*next;
+}
+*start = NULL;
+```
+Operations :
+
+* Insertion at the beginning of the list :
+  
+  case (1) : Empty list
+
+  If start = NULL ( create a new node with some value )
+
+  head = null
+
+  [ 10 | NULL ]
+
+  ^ New
+
+  head = new node
+
+  case (2) : Non-Empty list
+
+  [ 15 | 1001 ] --> [ 20 | 1002 ] --> ......... [ 50 | NULL ]
+
+  ^ start
+
+  [ 10 |      ] --- modify this as first
+
+  // code :
+  ```c
+  ```
