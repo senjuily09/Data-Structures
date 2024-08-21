@@ -182,5 +182,314 @@ int i=0;l=0;r=o; // indices
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Linked lists :
+* When we want to work with an unknown number of data values, We use a linked list data structure to organize.
 
-     
+--> Single Linked list :
+* Single Linked list is a sequence of elements in which every element has the link to the next element in the sequence. In any single linkedlist the individual element is called "Node".
+* Every Node consists of two fields data field. The data field is used to store actual address and stores next element address.
+
+  [ 10 | 1004 ] --> [ 25 | 1008 ] --> [ 28 | 1012 ] --> [ 55 | NULL ]
+
+          ^ Node address 
+
+// code :
+```c
+struct node // each node in list contain data and next pointer
+{
+int data;
+struct node*next;
+}
+*start = NULL;
+```
+Operations :
+
+* Insertion at the beginning of the list :
+  
+  case (1) : Empty list
+
+  If start = NULL ( create a new node with some value )
+
+  head = null
+
+  [ 10 | NULL ]
+
+  ^ New
+
+  head = new node
+
+  case (2) : Non-Empty list
+
+  [ 15 | 1001 ] --> [ 20 | 1002 ] --> ......... [ 50 | NULL ]
+
+  ^ start
+
+  [ 10 |      ] --- modify this as first
+
+  // code :
+ ```c
+struct Node* insertAtFront(struct Node* head, int data) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    ptr->next = head;
+    return ptr;
+}
+```
+* Insertion at Specific point
+
+// code :
+```c
+struct Node* insertAtSpecific(struct Node* head, int data, int index) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* p = head;
+    int i = 0;
+    while (i != index - 1 && p != NULL) {
+        p = p->next;
+        i++;
+    }
+    if (p == NULL) {
+        printf("Index out of bounds\n");
+        return head;
+    }
+    ptr->data = data;
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+```
+* Insertion at the end
+
+// code :
+```c
+struct Node* insertAtEnd(struct Node* head, int data) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    ptr->next = NULL;
+
+    if (head == NULL) {
+        return ptr;
+    }
+    struct Node* p = head;
+    while (p->next != NULL) {
+        p = p->next;
+    }
+    p->next = ptr;
+    return head;
+}
+```
+* Deletion at the start
+
+// code :
+```c
+struct Node* deleteFirst(struct Node* head) {
+    if (head == NULL) return NULL;
+    struct Node* ptr = head;
+    head = head->next;
+    free(ptr);
+    return head;
+}
+```
+* Deletion at specific Position
+
+// code :
+```c
+struct Node* deleteAtIndex(struct Node* head, int index) {
+    if (head == NULL) return NULL;
+    if (index == 0) return deleteFirst(head);
+
+    struct Node* p = head;
+    struct Node* q = head->next;
+    for (int i = 0; i < index - 1 && q != NULL; i++) {
+        p = p->next;
+        q = q->next;
+    }
+    if (q == NULL) {
+        printf("Index out of bounds\n");
+        return head;
+    }
+    p->next = q->next;
+    free(q);
+    return head;
+}
+```
+
+* Deletion at the end
+
+// code 
+```c
+struct Node* deleteAtEnd(struct Node* head) {
+    if (head == NULL) return NULL;
+    if (head->next == NULL) {
+        free(head);
+        return NULL;
+    }
+    struct Node* p = head;
+    struct Node* q = head->next;
+    while (q->next != NULL) {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = NULL;
+    free(q);
+    return head;
+}
+```
+---> Circular  Linked list
+* A circular linked list is like a singly or doubly linked list with the first node, the "head", and the last node, the "tail", connected.
+
+* In singly or doubly linked lists, we can find the start and end of a list by just checking if the links are null. But for circular linked lists, more complex code is needed to explicitly check for start and end nodes in certain applications.
+
+* Circular linked lists are good for lists you need to cycle through continuously.
+
+*  Insertion at the beginning of the list :
+
+// code :
+```c
+struct Node* insertAtFront(struct Node* head, int data) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+
+    if (head == NULL) {
+        ptr->next = ptr; // Point to itself if it's the first node
+        return ptr;
+    }
+
+    struct Node* temp = head;
+    while (temp->next != head) {
+        temp = temp->next;
+    }
+    temp->next = ptr;
+    ptr->next = head;
+    return ptr;
+}
+```
+* Insertion at Specific point
+
+// code :
+```c
+struct Node* insertAtSpecific(struct Node* head, int data, int index) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* p = head;
+    int i = 0;
+    
+    if (index == 0) {
+        return insertAtFront(head, data);
+    }
+
+    while (i != index - 1 && p->next != head) {
+        p = p->next;
+        i++;
+    }
+
+    if (i != index - 1) {
+        printf("Index out of bounds\n");
+        return head;
+    }
+
+    ptr->data = data;
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+```
+* Insertion at the end
+
+// code :
+```c
+struct Node* insertAtEnd(struct Node* head, int data) {
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+
+    if (head == NULL) {
+        ptr->next = ptr; // Point to itself if it's the first node
+        return ptr;
+    }
+
+    struct Node* temp = head;
+    while (temp->next != head) {
+        temp = temp->next;
+    }
+    temp->next = ptr;
+    ptr->next = head;
+    return head;
+}
+```
+* Deletion at the start
+
+// code :
+```c
+struct Node* deleteFirst(struct Node* head) {
+    if (head == NULL) return NULL;
+
+    struct Node* temp = head;
+
+    if (head->next == head) {
+        free(head);
+        return NULL;
+    }
+
+    while (temp->next != head) {
+        temp = temp->next;
+    }
+    temp->next = head->next;
+    free(head);
+    return temp->next;
+}
+```
+* Deletion at specific position
+
+// code :
+```c
+struct Node* deleteAtIndex(struct Node* head, int index) {
+    if (head == NULL) return NULL;
+    
+    if (index == 0) return deleteFirst(head);
+
+    struct Node* p = head;
+    struct Node* q = head->next;
+    
+    for (int i = 0; i < index - 1 && q != head; i++) {
+        p = p->next;
+        q = q->next;
+    }
+
+    if (q == head) {
+        printf("Index out of bounds\n");
+        return head;
+    }
+
+    p->next = q->next;
+    free(q);
+    return head;
+}
+```
+
+* Deletion at the end
+
+// code :
+```c
+struct Node* deleteAtEnd(struct Node* head) {
+    if (head == NULL) return NULL;
+
+    if (head->next == head) {
+        free(head);
+        return NULL;
+    }
+
+    struct Node* p = head;
+    struct Node* q = head->next;
+
+    while (q->next != head) {
+        p = p->next;
+        q = q->next;
+    }
+
+    p->next = head;
+    free(q);
+    return head;
+}
+```
+---> Double linked list
+
+
+
+
