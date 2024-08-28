@@ -34,7 +34,7 @@ struct Node* insertAtSpecific(struct Node* head, int data, int index) {
     while (i != index - 1 && p != NULL) {
         p = p->next;
         i++;
-    }
+    }  
 
     if (i != index - 1) {
         printf("Index out of bounds\n");
