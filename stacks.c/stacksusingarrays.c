@@ -1,40 +1,84 @@
-#include<stdio.h>
-#include<stdlib.h>
-int main(){
-    int top=-1,stock[max];
-    int arr=[];
-    void push(){
-        int element;
-        if(top=max-1){
-            printf("Stack is full\n");
-        }
-        else{
-            printf("eneter the element\n");
-            scanf("%d",&element);
-            stack[++top]=element;
-            printf("insertion sucessfull\n");
+#include <stdio.h>
+#include <stdlib.h>
 
+#define MAX 5 // define the maximum size of the stack
+
+void push(int stack[], int *top)
+{
+    int element;
+    if (*top == MAX - 1)
+    {
+        printf("Stack is full\n");
+    }
+    else
+    {
+        printf("Enter the element: ");
+        scanf("%d", &element);
+        stack[++(*top)] = element;
+        printf("Insertion successful\n");
+    }
+}
+
+void pop(int stack[], int *top)
+{
+    int element2;
+    if (*top == -1)
+    {
+        printf("Stack is empty\n");
+    }
+    else
+    {
+        element2 = stack[(*top)--];
+        printf("The element %d is at the position %d is deleted\n", element2, *top + 1);
+    }
+}
+
+void display(int stack[], int top)
+{
+    int i;
+    if (top == -1)
+    {
+        printf("Stack is empty\n");
+    }
+    else
+    {
+        printf("Stack elements are: \n");
+        for (i = top; i >= 0; i--)
+        {
+            printf("%d\n", stack[i]);
         }
     }
-    void pop(){
-        int element2;
-        if(top==-1){
-            printf("stack is empty\n ");
-    }
-    else{
-        printf("the element %d is at the qposition %d is deleted\n");
-        stack[top],top;
-        top=top-1;
-    }
-    }
-    void display(){
-        int i;
-        if(top===-1){
-            printf("stack elements are \n");
-            for(i=top;i>0;i--){
-                printf("%d\n",stack[i]);
-            }
+}
+
+int main()
+{
+    int top = -1;
+    int stack[MAX];
+    int choice;
+
+    while (1)
+    {
+        printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            push(stack, &top);
+            break;
+        case 2:
+            pop(stack, &top);
+            break;
+        case 3:
+            display(stack, top);
+            break;
+        case 4:
+            return 0;
+        default:
+            printf("Invalid choice\n");
         }
     }
-    return0;
+
+    return 0;
 }
