@@ -16,34 +16,34 @@ void push(int stack[], int *top)
         scanf("%d", &element);
         stack[++(*top)] = element;
         printf("Insertion successful\n");
+        display(stack, top); // Display the stack after insertion
     }
 }
 
 void pop(int stack[], int *top)
 {
-    int element2;
     if (*top == -1)
     {
         printf("Stack is empty\n");
     }
     else
     {
-        element2 = stack[(*top)--];
-        printf("The element %d is at the position %d is deleted\n", element2, *top + 1);
+        printf("The element %d at position %d is deleted\n", stack[(*top)--], *top + 1);
+        display(stack, top); // Display the stack after deletion
     }
 }
 
-void display(int stack[], int top)
+void display(int stack[], int *top)
 {
     int i;
-    if (top == -1)
+    if (*top == -1)
     {
         printf("Stack is empty\n");
     }
     else
     {
         printf("Stack elements are: \n");
-        for (i = top; i >= 0; i--)
+        for (i = *top; i >= 0; i--)
         {
             printf("%d\n", stack[i]);
         }
@@ -71,7 +71,7 @@ int main()
             pop(stack, &top);
             break;
         case 3:
-            display(stack, top);
+            display(stack, &top);
             break;
         case 4:
             return 0;
