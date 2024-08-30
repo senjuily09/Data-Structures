@@ -16,7 +16,6 @@ void push(int stack[], int *top)
         scanf("%d", &element);
         stack[++(*top)] = element;
         printf("Insertion successful\n");
-        display(stack, top); // Display the stack after insertion
     }
 }
 
@@ -28,8 +27,8 @@ void pop(int stack[], int *top)
     }
     else
     {
-        printf("The element %d at position %d is deleted\n", stack[(*top)--], *top + 1);
-        display(stack, top); // Display the stack after deletion
+        printf("The element %d at position %d is deleted\n", stack[*top], *top + 1);
+        (*top)--;
     }
 }
 
