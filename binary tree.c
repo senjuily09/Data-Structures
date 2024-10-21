@@ -45,19 +45,17 @@ void postorderTraversal(struct Node* root) {
     postorderTraversal(root->right);
     printf("%d ", root->data);
 }
-int main()
-{
+int main() {
     int n;
- 
+    printf("Enter the number of nodes in the binary tree: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter the values of the nodes in level order:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
     struct Node* root = NULL;
-    root=createNode(5);
-    root->left=createNode(2);
-    root->right=createNode(4);
-    root->left->left=createNode(1);
-    root->left->right=createNode(7);
-    root->right->left=createNode(9);
-    root->right->right=createNode(6);
-
+    root = insertLevelOrder(arr, root, 0, n);
     printf("\nIn-order Traversal: ");
     inorderTraversal(root);
     printf("\n");
